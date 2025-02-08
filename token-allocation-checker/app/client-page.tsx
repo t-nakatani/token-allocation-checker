@@ -10,6 +10,7 @@ import { AnimatedGrid } from "@/components/AnimatedGrid"
 import { AuthSection } from "@/components/AuthSection"
 import { ANIMATION_STYLES } from "@/lib/constants"
 import { AnimatedBanner } from "@/components/AnimatedBanner"
+import { AnimatedBackground } from "@/components/AnimatedBackground"
 
 const BANNER_IMAGES = [
   '/images/eth_global.png',
@@ -61,28 +62,30 @@ export default function ClientPage() {
   }, [session, fetchXAccountAddress])
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4 relative">
+    <div className="flex flex-col items-center justify-center min-h-screen p-4 relative bg-black/90">
       <style>{ANIMATION_STYLES}</style>
       
-      <AnimatedBanner position="top" images={BANNER_IMAGES} />
+      <AnimatedBackground images={BANNER_IMAGES} />
       
-      <h1 className="text-3xl font-bold mb-4 relative z-10 mt-2">Token Allocation Checker</h1>
-      <div className="w-full max-w-2xl relative z-10">
-        <AllocationResult allocation={allocation} />
-        <AddressForm onSubmit={checkAllocation} xAccountAddress={xAccountAddress} />
-        
-        {xAccountAddress && (
-          <Button onClick={checkXAccountAllocation} className="mt-4 w-full">
-            Check X Account Allocation
-          </Button>
-        )}
-        
-        <div className="mt-4">
-          <AuthSection />
+      <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-2xl">
+        <div className="w-full bg-black/60 backdrop-blur-sm rounded-xl p-8 shadow-2xl border border-white/10">
+          <div className="flex flex-col items-center justify-center text-white">
+            <h1 className="text-3xl font-bold mb-4">Token Allocation Checker</h1>
+            <AllocationResult allocation={allocation} />
+            <AddressForm onSubmit={checkAllocation} xAccountAddress={xAccountAddress} />
+            
+            {xAccountAddress && (
+              <Button onClick={checkXAccountAllocation} className="mt-4 w-full">
+                Check X Account Allocation
+              </Button>
+            )}
+            
+            <div className="mt-4">
+              <AuthSection />
+            </div>
+          </div>
         </div>
       </div>
-
-      <AnimatedBanner position="bottom" images={BANNER_IMAGES} />
     </div>
   )
 } 
