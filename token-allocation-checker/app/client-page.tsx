@@ -9,6 +9,18 @@ import { checkAllocationForAddress } from "@/lib/allocation"
 import { AnimatedGrid } from "@/components/AnimatedGrid"
 import { AuthSection } from "@/components/AuthSection"
 import { ANIMATION_STYLES } from "@/lib/constants"
+import { AnimatedBanner } from "@/components/AnimatedBanner"
+
+const BANNER_IMAGES = [
+  '/images/eth_global.png',
+  '/images/eth_global.png',
+  '/images/eth_global.png',
+  '/images/eth_global.png',
+  '/images/eth_global.png',
+  '/images/eth_global.png',
+  '/images/eth_global.png',
+  '/images/eth_global.png',
+]
 
 export default function ClientPage() {
   const { data: session } = useSession()
@@ -52,7 +64,7 @@ export default function ClientPage() {
     <div className="flex flex-col items-center justify-center min-h-screen p-4 relative">
       <style>{ANIMATION_STYLES}</style>
       
-      <AnimatedGrid position="top" />
+      <AnimatedBanner position="top" images={BANNER_IMAGES} />
       
       <h1 className="text-3xl font-bold mb-4 relative z-10 mt-2">Token Allocation Checker</h1>
       <div className="w-full max-w-2xl relative z-10">
@@ -70,7 +82,7 @@ export default function ClientPage() {
         </div>
       </div>
 
-      <AnimatedGrid position="bottom" />
+      <AnimatedBanner position="bottom" images={BANNER_IMAGES} />
     </div>
   )
 } 
