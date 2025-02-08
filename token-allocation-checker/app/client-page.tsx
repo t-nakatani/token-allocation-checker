@@ -62,25 +62,33 @@ export default function ClientPage() {
   }, [session, fetchXAccountAddress])
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4 relative bg-black/90">
+    <div className="flex flex-col items-center justify-center min-h-screen p-4 relative bg-black/95">
       <style>{ANIMATION_STYLES}</style>
       
       <AnimatedBackground images={BANNER_IMAGES} />
       
-      <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-2xl">
-        <div className="w-full bg-black/60 backdrop-blur-sm rounded-xl p-8 shadow-2xl border border-white/10">
-          <div className="flex flex-col items-center justify-center text-white">
-            <h1 className="text-3xl font-bold mb-4">Token Allocation Checker</h1>
-            <AllocationResult allocation={allocation} />
-            <AddressForm onSubmit={checkAllocation} xAccountAddress={xAccountAddress} />
+      <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-3xl px-4">
+        <div className="w-full bg-background/95 backdrop-blur-md rounded-xl p-8 md:p-10 shadow-2xl border border-border">
+          <div className="flex flex-col items-center justify-center space-y-6">
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground">Token Allocation Checker</h1>
+            
+            <div className="w-full max-w-2xl">
+              <AllocationResult allocation={allocation} />
+            </div>
+            
+            <div className="w-full max-w-2xl">
+              <AddressForm onSubmit={checkAllocation} xAccountAddress={xAccountAddress} />
+            </div>
             
             {xAccountAddress && (
-              <Button onClick={checkXAccountAllocation} className="mt-4 w-full">
-                Check X Account Allocation
-              </Button>
+              <div className="w-full max-w-2xl">
+                <Button onClick={checkXAccountAllocation} className="w-full">
+                  Check X Account Allocation
+                </Button>
+              </div>
             )}
             
-            <div className="mt-4">
+            <div className="w-full max-w-2xl mt-6">
               <AuthSection />
             </div>
           </div>
