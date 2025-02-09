@@ -2,25 +2,24 @@
 
 import { useState, useCallback, useEffect } from "react"
 import { useSession } from "next-auth/react"
-import AddressForm from "@/components/AddressForm"
-import AllocationResult from "@/components/AllocationResult"
+import AddressForm from "@/components/allocation/AddressForm"
+import AllocationResult from "@/components/allocation/AllocationResult"
 import { Button } from "@/components/ui/button"
 import { checkAllocationForAddress } from "@/lib/allocation"
-import { AnimatedGrid } from "@/components/AnimatedGrid"
 import { AuthSection } from "@/components/AuthSection"
 import { ANIMATION_STYLES } from "@/lib/constants"
-import { AnimatedBanner } from "@/components/AnimatedBanner"
-import { AnimatedBackground } from "@/components/AnimatedBackground"
+import { AnimatedBackground } from "@/components/background"
 
+const example_link = 'https://testnets.opensea.io/collection/reservoir-base-sepolia-open-mint'
 const BANNER_IMAGES = [
-  '/images/eth_global.png',
-  '/images/eth_global.png',
-  '/images/eth_global.png',
-  '/images/eth_global.png',
-  '/images/eth_global.png',
-  '/images/eth_global.png',
-  '/images/eth_global.png',
-  '/images/eth_global.png',
+  { src: '/images/eth_global.png', href: example_link },
+  { src: '/images/eth_global.png', href: example_link },
+  { src: '/images/eth_global.png', href: example_link },
+  { src: '/images/eth_global.png', href: example_link },
+  { src: '/images/eth_global.png', href: example_link },
+  { src: '/images/eth_global.png', href: example_link },
+  { src: '/images/eth_global.png', href: example_link },
+  { src: '/images/eth_global.png', href: example_link },
 ]
 
 export default function ClientPage() {
