@@ -75,7 +75,10 @@ export default function ClientPage() {
 
   const handleMint = useCallback(async () => {
     try {
-      if (!account) return
+      if (!account) {
+        console.error('ウォレットが接続されていません')
+        return
+      }
       await mintToken(account)
       console.log('Mint successful')
     } catch (error) {
