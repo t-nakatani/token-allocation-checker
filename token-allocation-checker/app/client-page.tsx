@@ -10,16 +10,18 @@ import { AuthSection } from "@/components/AuthSection"
 import { ANIMATION_STYLES } from "@/lib/constants"
 import { AnimatedBackground } from "@/components/background"
 
-const example_link = 'https://testnets.opensea.io/collection/reservoir-base-sepolia-open-mint'
+const EXAMPLE_LINK = 'https://testnets.opensea.io/collection/reservoir-base-sepolia-open-mint'
 const BANNER_IMAGES = [
-  { src: '/images/eth_global.png', href: example_link },
-  { src: '/images/eth_global.png', href: example_link },
-  { src: '/images/eth_global.png', href: example_link },
-  { src: '/images/eth_global.png', href: example_link },
-  { src: '/images/eth_global.png', href: example_link },
-  { src: '/images/eth_global.png', href: example_link },
-  { src: '/images/eth_global.png', href: example_link },
-  { src: '/images/eth_global.png', href: example_link },
+  { src: '/images/example_1.png', href: EXAMPLE_LINK },
+  { src: '/images/example_2.png', href: EXAMPLE_LINK },
+  { src: '/images/example_3.png', href: EXAMPLE_LINK },
+  { src: '/images/example_4.png', href: EXAMPLE_LINK },
+  { src: '/images/example_5.png', href: EXAMPLE_LINK },
+  { src: '/images/example_1.png', href: EXAMPLE_LINK },
+  { src: '/images/example_2.png', href: EXAMPLE_LINK },
+  { src: '/images/example_3.png', href: EXAMPLE_LINK },
+  { src: '/images/example_4.png', href: EXAMPLE_LINK },
+  { src: '/images/example_5.png', href: EXAMPLE_LINK },
 ]
 
 export default function ClientPage() {
