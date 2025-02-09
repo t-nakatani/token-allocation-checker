@@ -9,6 +9,8 @@ import { checkAllocationForAddress } from "@/lib/allocation"
 import { AuthSection } from "@/components/AuthSection"
 import { ANIMATION_STYLES } from "@/lib/constants"
 import { AnimatedBackground } from "@/components/background"
+import { useWallet } from '../hooks/useWallet'
+import { mintToken } from "@/lib/mint"
 
 const EXAMPLE_LINK = 'https://testnets.opensea.io/collection/oniichan-5'
 const BANNER_IMAGES = [
@@ -28,6 +30,8 @@ export default function ClientPage() {
   const { data: session } = useSession()
   const [allocation, setAllocation] = useState<string | null>(null)
   const [xAccountAddress, setXAccountAddress] = useState<string | undefined>(undefined)
+  const { account, connectWallet, disconnectWallet, isConnected } = useWallet()
+  const [address, setAddress] = useState('')
 
   const checkAllocation = useCallback(async (address: string) => {
     try {
@@ -62,6 +66,23 @@ export default function ClientPage() {
     }
   }, [session, fetchXAccountAddress])
 
+  // ウォレット接続時に自動的にアロケーションをチェック
+  useEffect(() => {
+    if (account) {
+      checkAllocation(account)
+    }
+  }, [account, checkAllocation])
+
+  const handleMint = useCallback(async () => {
+    try {
+      if (!account) return
+      await mintToken(account)
+      console.log('Mint successful')
+    } catch (error) {
+      console.error('Mintエラー:', error)
+    }
+  }, [account])
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4 relative bg-black/95">
       <style>{ANIMATION_STYLES}</style>
@@ -78,7 +99,22 @@ export default function ClientPage() {
             </div>
             
             <div className="w-full max-w-2xl">
-              <AddressForm onSubmit={checkAllocation} xAccountAddress={xAccountAddress} />
+              {!isConnected ? (
+                <AddressForm 
+                  onSubmit={checkAllocation} 
+                  xAccountAddress={xAccountAddress}
+                  walletAddress={account}
+                />
+              ) : (
+                <div className="w-full">
+                  <button
+                    onClick={handleMint}
+                    className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  >
+                    Mint
+                  </button>
+                </div>
+              )}
             </div>
             
             {xAccountAddress && (
@@ -94,6 +130,25 @@ export default function ClientPage() {
             </div>
           </div>
         </div>
+      </div>
+      
+      <div className="fixed top-4 right-4">
+        {account ? (
+          <button
+            onClick={disconnectWallet}
+            className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg shadow-lg transition-colors flex items-center space-x-2"
+          >
+            <span>disconnect</span>
+            <span>{`${account.slice(0, 6)}...${account.slice(-4)}`}</span>
+          </button>
+        ) : (
+          <button
+            onClick={connectWallet}
+            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg transition-colors"
+          >
+            connect wallet
+          </button>
+        )}
       </div>
     </div>
   )
