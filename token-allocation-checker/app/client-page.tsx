@@ -79,7 +79,7 @@ export default function ClientPage() {
         console.error('ウォレットが接続されていません')
         return
       }
-      await mintToken(account)
+      await mintToken()
       console.log('Mint successful')
     } catch (error) {
       console.error('Mintエラー:', error)

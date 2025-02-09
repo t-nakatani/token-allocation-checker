@@ -4,11 +4,12 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 
 interface AddressFormProps {
-  onSubmit: (address: string) => void
-  xAccountAddress: string | null | undefined
+  onSubmit: (address: string) => Promise<void>
+  xAccountAddress?: string
+  walletAddress?: string | null
 }
 
-export default function AddressForm({ onSubmit, xAccountAddress }: AddressFormProps) {
+const AddressForm: React.FC<AddressFormProps> = ({ onSubmit, xAccountAddress, walletAddress }) => {
   const [address, setAddress] = useState("")
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -46,4 +47,6 @@ export default function AddressForm({ onSubmit, xAccountAddress }: AddressFormPr
     </form>
   )
 }
+
+export default AddressForm
 

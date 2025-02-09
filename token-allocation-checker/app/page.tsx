@@ -1,5 +1,5 @@
 import { Suspense } from "react"
-import ClientPage from "./client-page.tsx"
+import ClientPage from "./client-page"
 
 export default function Home() {
   return (
