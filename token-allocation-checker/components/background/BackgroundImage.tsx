@@ -17,7 +17,7 @@ export function BackgroundImage({
   rowCount, 
   href,
   overlayLogo = '/images/opensea_logo.png',
-  overlayText = 'Buy in Opensea'
+  overlayText = 'Browse in Opensea'
 }: BackgroundImageProps) {
   return (
     <Link 

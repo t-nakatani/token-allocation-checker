@@ -19,7 +19,7 @@ export function HoverOverlay({ logoSrc, text }: HoverOverlayProps) {
         </div>
         
         <div className="text-white flex items-center gap-2">
-          <span className="font-bold text-lg">{text}</span>
+          <span className="font-bold text-medium">{text}</span>
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
             width="24" 

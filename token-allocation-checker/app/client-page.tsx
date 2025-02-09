@@ -10,7 +10,7 @@ import { AuthSection } from "@/components/AuthSection"
 import { ANIMATION_STYLES } from "@/lib/constants"
 import { AnimatedBackground } from "@/components/background"
 
-const EXAMPLE_LINK = 'https://testnets.opensea.io/collection/reservoir-base-sepolia-open-mint'
+const EXAMPLE_LINK = 'https://testnets.opensea.io/collection/oniichan-5'
 const BANNER_IMAGES = [
   { src: '/images/example_1.png', href: EXAMPLE_LINK },
   { src: '/images/example_2.png', href: EXAMPLE_LINK },
